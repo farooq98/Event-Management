@@ -1,0 +1,304 @@
+{
+	"info": {
+		"_postman_id": "4d33720b-b129-454d-9102-fa409bf805cc",
+		"name": "EventManagement",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "RegisterUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"{{username}}\",\n    \"email\": \"{{email}}\",\n    \"mobile_number\": \"{{mobile_number}}\",\n    \"password\": \"{{password}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/registration/register/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"registration",
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"{{username}}\",\n    \"password\": \"{{password}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/registration/login/",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"registration",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateEvent",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"event_id\", jsonData.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Birthday Party\",\n    \"description\": \"This is a birthday party\",\n    \"date\": \"2022-03-23T07:30:15.109517Z\",\n    \"location\": \"Avari2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/events/create/",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"events",
+						"create",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetEventLists",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/events/",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"events",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetParticularEvent",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/events/{{event_id}}/",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"events",
+						"{{event_id}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateEvent",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Convocation\",\n    \"description\": \"This is convocation updated 2\",\n    \"date\": \"2022-03-21T07:30:15.109517Z\",\n    \"location\": \"Avari5\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/events/{{event_id}}/",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"events",
+						"{{event_id}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AttendEvent",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/events/attendees/{{event_id}}/",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"events",
+						"attendees",
+						"{{event_id}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAttendees",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/events/attendees/{{event_id}}/",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"events",
+						"attendees",
+						"{{event_id}}",
+						""
+					],
+					"query": [
+						{
+							"key": "page_size",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "page",
+							"value": "2",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteEvent",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/events/{{event_id}}/",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"events",
+						"{{event_id}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/registration/logout/",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"registration",
+						"logout",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
