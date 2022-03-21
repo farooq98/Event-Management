@@ -86,6 +86,7 @@ LOCAL_APPS = [
     "event_managment.users",
     "user_registration",
     "events",
+    "migration_test",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
