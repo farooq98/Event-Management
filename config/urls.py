@@ -20,6 +20,7 @@ urlpatterns = [
     # Your stuff: custom urls includes go here
 
     path("registration/", include("user_registration.urls", namespace="user_registration")),
+    path("events/", include("events.urls", namespace="events")),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
